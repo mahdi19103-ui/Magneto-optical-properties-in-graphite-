@@ -69,9 +69,9 @@ def tracer_niveaux_Landau(
     ax.set_xlabel(r"$B\ (\mathrm{T})$", fontsize=16)
     ax.set_ylabel(r"$E\ (\mathrm{eV})$", fontsize=18)
 
-    # Placer l'axe E à droite
+    """# Placer l'axe E à droite
     ax.yaxis.tick_right()
-    ax.yaxis.set_label_position("right")
+    ax.yaxis.set_label_position("right")"""
 
     ax.tick_params(axis='y', labelsize=16)
 # Limites des axes
