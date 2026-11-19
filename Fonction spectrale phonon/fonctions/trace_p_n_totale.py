@@ -8,7 +8,7 @@ from fonctions.P_n_mp import P_n_mp
 # n commence par 2
 def tracer_P_n_totale(
     n, B, eta_cm, valeurs_q, omega_cm_values,
-    para_swm, para_num, unites_phy,
+    para_swm, para_num,para_phy, unites_phy,
     pas_x=10, pas_y=None, x_lim=(10, 200),
     y_lim=None
 ):
@@ -25,6 +25,7 @@ def tracer_P_n_totale(
         omega_cm_values=omega_cm_values,
         para_swm=para_swm,
         para_num=para_num,
+        para_phy=para_phy,
         unites_phy=unites_phy
     )
 
@@ -36,6 +37,7 @@ def tracer_P_n_totale(
         omega_cm_values=omega_cm_values,
         para_swm=para_swm,
         para_num=para_num,
+        para_phy=para_phy,
         unites_phy=unites_phy
     )
 
@@ -133,7 +135,7 @@ def tracer_P_n_totale(
                 + 1j * eta_ev
             )
 
-            Pi_partielle = C_B * np.dot(
+            Pi_partielle = (2e-9 * B) * np.dot(
                 D,
                 M[indices] * occupation[indices]
             )

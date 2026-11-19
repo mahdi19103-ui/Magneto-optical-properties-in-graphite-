@@ -6,7 +6,7 @@ from fonctions.Pi_mp import Pi_mp
 
 def trace_Pi_mp(
     B, eta_cm, valeurs_q, omega_cm_values,
-    para_swm, para_num, unites_phy,
+    para_swm, para_num,para_phy, unites_phy,
     pas_x=10, pas_y=None,
     x_lim=(10, 200), y_lim=None
 ):
@@ -19,6 +19,7 @@ def trace_Pi_mp(
         omega_cm_values=omega_cm_values,
         para_swm=para_swm,
         para_num=para_num,
+        para_phy=para_phy,
         unites_phy=unites_phy
     )
 

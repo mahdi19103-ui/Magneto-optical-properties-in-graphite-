@@ -7,7 +7,7 @@ from fonctions.hamiltonien import energies_seules
 
 def tracer_niveaux_Landau(
     q,
-    parametres,
+    para_swm,para_phy,
     n_max=10,
     B_min=0,
     B_max=10,
@@ -33,7 +33,7 @@ def tracer_niveaux_Landau(
                 n=n,
                 B=B,
                 q=q,
-                parametres=parametres
+                para_swm=para_swm,para_phy=para_phy
             )
 
             energies_n.append(energies)
@@ -74,7 +74,7 @@ def tracer_niveaux_Landau(
     ax.yaxis.set_label_position("right")"""
 
     ax.tick_params(axis='y', labelsize=16)
-# Limites des axes
+    # Limites des axes
     ax.set_xlim(B_min, B_max)
 
     if E_min is not None and E_max is not None:

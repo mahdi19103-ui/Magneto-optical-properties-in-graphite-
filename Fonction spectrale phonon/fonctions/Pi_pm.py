@@ -5,7 +5,7 @@ from fonctions.p_n_pm import P_n_pm
 
 def Pi_pm(
     B, eta_cm, valeurs_q, omega_cm_values,
-    para_swm, para_num, unites_phy
+    para_swm, para_num, para_phy, unites_phy
 ):
 
     n_max = para_num.n_max
@@ -27,6 +27,7 @@ def Pi_pm(
             omega_cm_values=omega_cm_values,
             para_swm=para_swm,
             para_num=para_num,
+            para_phy=para_phy,
             unites_phy=unites_phy
         )
 

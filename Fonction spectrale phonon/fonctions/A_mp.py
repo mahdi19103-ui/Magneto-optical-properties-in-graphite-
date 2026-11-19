@@ -2,13 +2,13 @@ import numpy as np
 from fonctions.Pi_pm import Pi_pm
 
 
-def A_mp(B, eta_cm, eta_ph_cm, valeurs_q, omega_cm_values,
-         param_phys, para_swm, para_num, unites_phy,interacting=True):
+def A_mp(B, eta_cm, eta_ph_cm, valeurs_q, omega_cm_values, para_swm, para_num,
+         para_phy, unites_phy,interacting=True):
 
     # Conversion des frequences et des elargissements en eV
     omega_ev = np.asarray(omega_cm_values) * unites_phy.cm1_to_eV
 
-    omega_0 = param_phys.omega_0_cm * unites_phy.cm1_to_eV
+    omega_0 = para_phy.omega_0_cm * unites_phy.cm1_to_eV
 
     eta_ph = eta_ph_cm * unites_phy.cm1_to_eV
 
@@ -20,6 +20,7 @@ def A_mp(B, eta_cm, eta_ph_cm, valeurs_q, omega_cm_values,
         omega_cm_values=omega_cm_values,
         para_swm=para_swm,
         para_num=para_num,
+        para_phy=para_phy,
         unites_phy=unites_phy
     )
 

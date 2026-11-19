@@ -1,16 +1,16 @@
 
 import numpy as np  
-def H_n(n, B, q, parametres):
+def H_n(n, B, q, para_swm,para_phy):
 
-    eps = parametres.epsilon(B)
+    eps = para_phy.epsilon(B)
 
-    Gamma = parametres.Gamma(q)
-    Gamma1 = parametres.Gamma1(q)
-    Gamma2 = parametres.Gamma2(q)
-    Gamma5 = parametres.Gamma5(q)
+    Gamma = para_swm.Gamma(q)
+    Gamma1 = para_swm.Gamma1(q)
+    Gamma2 = para_swm.Gamma2(q)
+    Gamma5 = para_swm.Gamma5(q)
 
     # on prend gamma4 , c'est le terme qui contientgamma4
-    terme = eps * (parametres.gamma4 / parametres.gamma0) * Gamma
+    terme = eps * (para_swm.gamma4 / para_swm.gamma0) * Gamma
 
     if n == 0:
         return np.array([
@@ -34,15 +34,15 @@ def H_n(n, B, q, parametres):
 
 
 # Diagonalsiation
-def diagonalisation(n, B, q, parametres):
-    H = H_n(n, B, q, parametres)
+def diagonalisation(n, B, q, para_swm, para_phy):
+    H = H_n(n, B, q, para_swm,para_phy)
 
     energies, etats_propres = np.linalg.eigh(H)
 
     return  energies, etats_propres
 
 ## si j'ai besoin juste des valeurs propres comme dans lorsque je trace structure de bande
-def energies_seules(n, B, q, parametres):
-    matrice = H_n(n, B, q, parametres)
+def energies_seules(n, B, q, para_swm,para_phy):
+    matrice = H_n(n, B, q, para_swm,para_phy)
     energies = np.linalg.eigvalsh(matrice)
     return energies

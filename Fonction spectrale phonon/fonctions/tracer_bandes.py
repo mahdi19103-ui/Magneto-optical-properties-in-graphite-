@@ -1,4 +1,5 @@
 
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -6,7 +7,7 @@ from fonctions.hamiltonien import energies_seules
 
 
 def tracer_structure_bandes(
-    B, para_num, para_swm,
+    B, para_num, para_swm, para_phy,
     xlim=(-0.5, 0.5),
     ylim=(-0.5, 0.6),
     taille=(6, 5),
@@ -14,6 +15,7 @@ def tracer_structure_bandes(
     pas_y=0.2,
     Ef=None
 ):
+
     plt.figure(figsize=taille)
 
     valeurs_q = np.linspace(-0.5, 0.5, para_num.Nq)
@@ -23,66 +25,42 @@ def tracer_structure_bandes(
         energies_n = []
 
         for q in valeurs_q:
-            energies = energies_seules(n, B, q, para_swm)
+            energies = energies_seules(n, B, q, para_swm, para_phy)
             energies_n.append(energies)
 
         energies_n = np.array(energies_n)
 
-        # -----------------------------
         # Couleurs des branches
-        # -----------------------------
-
         for i in range(energies_n.shape[1]):
 
-            # n = 0 : bande centrale
             if n == 0:
                 couleur = "magenta"
 
-            # n = 1 : trois branches [--, 0, ++]
             elif n == 1:
-
                 if i == 0:
-                    couleur = "black"    # Haute énergie négative
-
+                    couleur = "black"
                 elif i == 1:
-                    couleur = "magenta"   # Bande centrale
-
+                    couleur = "magenta"
                 else:
-                    couleur = "black"    # Haute énergie positive
+                    couleur = "black"
 
-            # n >= 2 : quatre branches [--, -, +, ++]
             else:
-
                 if i == 0:
-                    couleur = "black"    # Haute énergie négative
-
+                    couleur = "black"
                 elif i == 1:
-                    couleur = "blue"     # Basse énergie négative
-
+                    couleur = "blue"
                 elif i == 2:
-                    couleur = "red"      # Basse énergie positive
-
+                    couleur = "red"
                 else:
-                    couleur = "black"    # Haute énergie positive
+                    couleur = "black"
 
-            plt.plot(
-                valeurs_q,
-                energies_n[:, i],
-                color=couleur
-            )
+            plt.plot(valeurs_q, energies_n[:, i], color=couleur)
 
     # Niveau de Fermi
     if Ef is not None:
-        plt.axhline(
-            y=Ef,
-            color="green",
-            linestyle="-"
-        )
+        plt.axhline(y=Ef, color="green", linestyle="-")
 
-    # -----------------------------
-    # Axes et présentation
-    # -----------------------------
-
+    # Axes
     plt.xlabel(r'$k_z$', fontsize=19)
     plt.ylabel('Energy (eV)', fontsize=17)
 
@@ -100,9 +78,9 @@ def tracer_structure_bandes(
     )
 
     plt.grid(False)
-
     plt.tight_layout()
     plt.show()
+
 
 
 

@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 from fonctions.p_n_pm import P_n_pm
 
 
-def tracer_P_n_pm(n, B, eta_cm,valeurs_q, omega_cm_values,  para_swm, para_num, unites_phy, pas_x=10, pas_y=None,x_lim=(10, 200), 
+def tracer_P_n_pm(n, B, eta_cm,valeurs_q, omega_cm_values,  para_swm, para_num,
+                  para_phy, unites_phy, pas_x=10, pas_y=None,x_lim=(10, 200), 
     y_lim=None
 ):
     # 1. Calcul de la polarisation
@@ -23,6 +24,7 @@ def tracer_P_n_pm(n, B, eta_cm,valeurs_q, omega_cm_values,  para_swm, para_num, 
         omega_cm_values=omega_cm_values,
         para_swm=para_swm,
         para_num=para_num,
+        para_phy=para_phy,
         unites_phy=unites_phy
     )
 
@@ -90,7 +92,7 @@ def tracer_P_n_pm(n, B, eta_cm,valeurs_q, omega_cm_values,  para_swm, para_num, 
             + 1j * eta_ev
         )
 
-        return (2e-7 * B) * np.dot(
+        return (2e-9 * B) * np.dot(
             D,
             M_n[indices] * occupation_n[indices]
         )

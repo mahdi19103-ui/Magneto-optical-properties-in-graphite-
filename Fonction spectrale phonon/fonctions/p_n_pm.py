@@ -6,7 +6,7 @@ from fonctions.hamiltonien import diagonalisation
 from fonctions.fermi_energy import energie_fermi
 
 
-def P_n_pm( n, B,eta_cm,  valeurs_q, omega_cm_values, para_swm, para_num,unites_phy):
+def P_n_pm( n, B,eta_cm,  valeurs_q, omega_cm_values, para_swm, para_num,para_phy,unites_phy):
     """
     Calcule la contribution P_n à la polarisation Pi_{+-}.
 
@@ -29,7 +29,7 @@ def P_n_pm( n, B,eta_cm,  valeurs_q, omega_cm_values, para_swm, para_num,unites_
     EF = energie_fermi(
         B=B,
         para_swm=para_swm,
-        para_num=para_num
+        para_num=para_num,para_phy=para_phy
     )
 
     # Listes pour stocker les contributions
@@ -45,11 +45,11 @@ def P_n_pm( n, B,eta_cm,  valeurs_q, omega_cm_values, para_swm, para_num,unites_
 
         # Diagonalisation des blocs n et n-2
         energies_n, vecteurs_n = diagonalisation(
-            n, B, q, para_swm
+            n, B, q, para_swm,para_phy
         )
 
         energies_n_moins_2, vecteurs_n_moins_2 = diagonalisation(
-            n - 2, B, q, para_swm
+            n - 2, B, q, para_swm,para_phy
         )
 
         # Parcours des bandes lambda et lambda'
@@ -129,7 +129,7 @@ def P_n_pm( n, B,eta_cm,  valeurs_q, omega_cm_values, para_swm, para_num,unites_
     )
 
     # Polarisation : formule conservée
-    P_n_pm_values = (2e-9 * B) * np.dot(
+    P_n_pm_values = (2e-10 * B) * np.dot(
         D,
         M_tableau_n * occupation_tableau_n
     ) # calcule final M fois occupation deux vecteur on multippe terme par tereme 

@@ -8,9 +8,9 @@ def A_pm_B(
     eta_ph_cm,
     valeurs_q,
     omega_cm_values,
-    param_phys,
     para_swm,
     para_num,
+    para_phy,
     unites_phy
 ):
     # Valeurs du champ magnetique entre 0 et 5 T
@@ -31,9 +31,9 @@ def A_pm_B(
             eta_ph_cm=eta_ph_cm,
             valeurs_q=valeurs_q,
             omega_cm_values=omega_cm_values,
-            param_phys=param_phys,
             para_swm=para_swm,
             para_num=para_num,
+            para_phy=para_phy,
             unites_phy=unites_phy
         )
 

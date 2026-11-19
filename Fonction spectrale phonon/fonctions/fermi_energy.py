@@ -5,7 +5,7 @@ from fonctions.hamiltonien import energies_seules
 #Fonction qui cree un tableau de taille(nombre totale des etats). 
 #On met dans ce tableau tout les energies propres par ordre croissant.
 #but: calcule enrgie de Fermi (milieu de ce tableau).
-def tableaux_energies(B, para_swm, para_num): 
+def tableaux_energies(B, para_swm, para_num,para_phy): 
 
     valeurs_q = np.linspace(
         -0.5, 0.5, para_num.Nq
@@ -18,7 +18,7 @@ def tableaux_energies(B, para_swm, para_num):
         for q in valeurs_q:
 
             energies = energies_seules(
-                n, B, q, para_swm
+                n, B, q, para_swm,para_phy
             )
 
             toutes_energies.extend(energies)
@@ -30,10 +30,10 @@ def tableaux_energies(B, para_swm, para_num):
     return toutes_energies
 
 # fonctionqui donne l'energie de fermi
-def energie_fermi(B, para_swm, para_num):
+def energie_fermi(B, para_swm, para_num,para_phy):
 
     energies_totales = tableaux_energies(
-        B, para_swm, para_num
+        B, para_swm, para_num,para_phy
     )
 
     N = len(energies_totales)

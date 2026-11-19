@@ -6,7 +6,7 @@ from fonctions.A_pm import A_pm
 
 
 def tracer_A_pm(B, eta_cm, eta_ph_cm, valeurs_q, omega_cm_values,
-                param_phys, para_swm, para_num, unites_phy, x_lim=None, y_lim=None, pas_x=10):
+                 para_swm, para_num,para_phy, unites_phy, x_lim=None, y_lim=None, pas_x=10):
 
     # Calcul de la fonction spectrale
     A_pm_values = A_pm(
@@ -15,9 +15,9 @@ def tracer_A_pm(B, eta_cm, eta_ph_cm, valeurs_q, omega_cm_values,
         eta_ph_cm=eta_ph_cm,
         valeurs_q=valeurs_q,
         omega_cm_values=omega_cm_values,
-        param_phys=param_phys,
         para_swm=para_swm,
         para_num=para_num,
+        para_phy=para_phy,
         unites_phy=unites_phy
     )
 
@@ -32,11 +32,11 @@ def tracer_A_pm(B, eta_cm, eta_ph_cm, valeurs_q, omega_cm_values,
     )
 
     plt.axvline(
-        x=param_phys.omega_0_cm,
+        x=para_phy.omega_0_cm,
         color="red",
         linestyle="-",
         linewidth=1.5,
-        label=rf"$\omega_0 = {param_phys.omega_0_cm}\ \mathrm{{cm}}^{{-1}}$"
+        label=rf"$\omega_0 = {para_phy.omega_0_cm}\ \mathrm{{cm}}^{{-1}}$"
     )
 
     plt.xlabel(r"$\omega$ (cm$^{-1}$)")
