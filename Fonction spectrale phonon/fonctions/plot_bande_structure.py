@@ -5,8 +5,7 @@ import matplotlib.pyplot as plt
 
 from fonctions.hamiltonien import energies_seules
 
-
-def tracer_structure_bandes(
+def plot_bande_structure(
     B, para_num, para_swm, para_phy,
     xlim=(-0.5, 0.5),
     ylim=(-0.5, 0.6),
@@ -15,6 +14,20 @@ def tracer_structure_bandes(
     pas_y=0.2,
     Ef=None
 ):
+
+
+    """
+    Plot the electronic band structure of graphite as a function of kz
+    for a fixed magnetic field B.
+
+    The energy branches are plotted for each Landau level n, with
+    different colors used to distinguish the branches.
+
+    An optional Fermi energy Ef can be displayed as a horizontal line.
+
+    Parameters such as axis limits, figure size, and tick spacing
+    can be adjusted to customize the plot.
+    """
 
     plt.figure(figsize=taille)
 

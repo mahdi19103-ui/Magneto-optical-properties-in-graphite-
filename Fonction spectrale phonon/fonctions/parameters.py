@@ -1,3 +1,28 @@
+"""
+Objectives
+---------
+This module defines four classes gathering the physical parameters,
+numerical parameters and constants used in the calculations.
+
+1. Paraswm:
+   SWM hopping parameters for graphite (in eV) and q-dependent terms,
+   with kz = (2*pi/c)*q and q in [-0.5, 0.5].
+
+2. Paranum:
+   Numerical discretization parameters:
+   Nq (q-grid), N_B (magnetic-field sampling), N_omega (frequency grid).
+
+3. Paraphy:
+   Phonon-related parameters, including the electron-phonon coupling g3 (effect of gamma3)
+   (eV/A) and the magnetic-field-dependent energy scale epsilon(B) (eV).
+
+4. Unitesphy:
+   Fundamental physical constants and unit conversion factors.
+"""
+
+
+
+
 import numpy as np
 
 class Paraswm:
@@ -35,7 +60,7 @@ class Paranum:
         self.omega_cm_max = omega_cm_max    
 
 class Paraphy:
-    def __init__(self,omega_0_cm=44.0,eta_cm=0.1,g3=0.01 ):
+    def __init__(self,omega_0_cm=44.0,eta_cm=0.1,g3=0.1 ):
         # Fréquence propre du phonon, en cm⁻¹
         self.omega_0_cm = omega_0_cm
 
@@ -45,15 +70,15 @@ class Paraphy:
         # Couplage électron-phonon en eV/A
         self.g3 = g3
         
-   # Echelle energetique qui depend du champ ce terme apparait dan sl'hamiltonien     
+   # Echelle energetique qui depend du champ ce terme apparait dans l'hamiltonien     
     def epsilon(self, B):
         return 0.036 * np.sqrt(B)  # eV et B en Tesla 
 
 class Unitesphy():
     def __init__(self):
         self.e = 1.602176634e-19     # C
-        self.eV_to_cm1 = 8065.544
-        self.cm1_to_eV = 1 / 8065.544
+        self.eV_to_cm = 8065.544
+        self.cm_to_eV = 1 / 8065.544
         self.hbar = 1.054571817e-34  # J.s
         self.k_B = 1.380649e-23      # J/K
         self.J_to_eV = 1 / 1.602176634e-19    

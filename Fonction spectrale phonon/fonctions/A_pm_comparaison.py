@@ -5,15 +5,15 @@ import matplotlib.pyplot as plt
 from fonctions.A_pm import A_pm
 
 
-def trace_A_pm_comparaison(
+def plot_A_pm_comparison(
     B_values,
     eta_cm,
     eta_ph_cm,
-    valeurs_q,
+    q_values,
     omega_cm_values,
-    param_phys,
     para_swm,
     para_num,
+    para_phy,
     unites_phy,
     x_lim=(0, 80),
     y_lim=None,
@@ -21,55 +21,54 @@ def trace_A_pm_comparaison(
     interacting=True
 ):
 
-    # Création de la figure
+    # Create the figure
     plt.figure(figsize=(8, 5))
 
-    # Couleurs pour les différentes courbes
+    # Colors for the different curves
     couleurs = ["red", "blue", "green"]
 
-    # Calcul et tracé pour chaque champ magnétique
+    # Calculate and plot for each magnetic field
     for B, couleur in zip(B_values, couleurs):
 
-        A_values = A_pm(
+        A_pm_values = A_pm(
             B=B,
             eta_cm=eta_cm,
             eta_ph_cm=eta_ph_cm,
-            valeurs_q=valeurs_q,
+            q_values=q_values,
             omega_cm_values=omega_cm_values,
-            param_phys=param_phys,
             para_swm=para_swm,
             para_num=para_num,
+            para_phy=para_phy,
             unites_phy=unites_phy,
             interacting=interacting
         )
 
         plt.plot(
             omega_cm_values,
-            A_values,
+            A_pm_values,
             color=couleur,
             linewidth=2,
             label=rf"$B={B}$ T"
-       
         )
 
-
-    # Ligne verticale à 44 cm⁻¹
+    # Reference vertical line at 44 cm^-1
     plt.axvline(
-    x=44,
-    color="black",
-    linestyle="--",
-    linewidth=1.5,
-    label=r"$\omega_0=44\ \mathrm{cm}^{-1}$"
+        x=44,
+        color="black",
+        linestyle="--",
+        linewidth=1.5,
+        label=r"$\omega_0=44\ \mathrm{cm}^{-1}$"
     )
 
-    # Mise en forme
+    # Formatting
     plt.xlabel(r"$\omega$ (cm$^{-1}$)", fontsize=20)
     plt.ylabel(r"$A_{+-}(\omega)$", fontsize=18)
 
     plt.xlim(x_lim)
 
     plt.xticks(
-        np.arange(x_lim[0], x_lim[1] + pas_x, pas_x),fontsize=18
+        np.arange(x_lim[0], x_lim[1] + pas_x, pas_x),
+        fontsize=18
     )
 
     if y_lim is not None:
@@ -80,3 +79,4 @@ def trace_A_pm_comparaison(
 
     plt.tight_layout()
     plt.show()
+

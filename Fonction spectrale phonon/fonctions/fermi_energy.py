@@ -1,10 +1,19 @@
+"""
+Objectives:
+
+Build an array containing all eigenenergies of the system.
+
+The energies are collected for all Landau levels n and all q values,
+then sorted in ascending order.
+
+The Fermi energy is determined from the middle of the sorted energy array.
+ """
+
 
 import numpy as np
 from fonctions.hamiltonien import energies_seules
 
-#Fonction qui cree un tableau de taille(nombre totale des etats). 
-#On met dans ce tableau tout les energies propres par ordre croissant.
-#but: calcule enrgie de Fermi (milieu de ce tableau).
+
 def tableaux_energies(B, para_swm, para_num,para_phy): 
 
     valeurs_q = np.linspace(
@@ -29,7 +38,7 @@ def tableaux_energies(B, para_swm, para_num,para_phy):
 
     return toutes_energies
 
-# fonctionqui donne l'energie de fermi
+# fonction qui donne l'energie de fermi
 def energie_fermi(B, para_swm, para_num,para_phy):
 
     energies_totales = tableaux_energies(
@@ -40,12 +49,19 @@ def energie_fermi(B, para_swm, para_num,para_phy):
 
     if N < 2:
         raise ValueError(
-            "Il faut au moins deux niveaux d'énergie."
+            "Il faut au moins deux niveaux d'energie."
         )
 
-    EF = 0.5 * (
+    if N % 2 == 0:
+        
+    # Even number of energy levels
+        EF = 0.5 * (
         energies_totales[N // 2 - 1]
         + energies_totales[N // 2]
     )
+        
+    else:
+    # Odd number of energy levels
+        EF = energies_totales[N // 2]
 
     return EF

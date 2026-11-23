@@ -1,7 +1,31 @@
+"""
+Objectives
+---------
+Definition of the graphite Hamiltonian in the presence of a magnetic field B,
+and calculation of its eigenvalues and eigenvectors.
 
-import numpy as np  
+Remark1:
+The effect of gamma3 is neglected in the electronic structure calculation.
+Including gamma3 (trigonal warping) would require a more complex,
+potentially infinite-dimensional Hamiltonian representation.
+"""
+
+
+
+
+import numpy as np
+
+
+""""
+n: Landau level index (n = 0, 1, 2, ...).
+
+para_swm and para_phy: instances of the classes defined in parameters.py.
+"""
+
+
 def H_n(n, B, q, para_swm,para_phy):
 
+    
     eps = para_phy.epsilon(B)
 
     Gamma = para_swm.Gamma(q)
